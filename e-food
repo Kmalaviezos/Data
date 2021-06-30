@@ -1,0 +1,13 @@
+-- Q1
+SELECT city,Count(order_id) AS breakfast_count
+
+FROM `bi-2019-test.ad_hoc.orders_jan2021`
+
+WHERE cuisine_parent='Breakfast'
+
+GROUP BY city
+
+ORDER BY breakfast_count desc limit 10
+
+
+--Q2
