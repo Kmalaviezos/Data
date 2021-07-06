@@ -57,27 +57,28 @@ order by NUM_OF_USERS desc
 B. 
 SELECT count(DISTINCT user_id) AS userCount, COUNT(order_id) AS NumberOfOrders
     ,CASE 
-        WHEN COUNT(order_id) BETWEEN 0 AND 5 THEN '1'
+        WHEN COUNT(order_id) BETWEEN 0 AND 30 THEN '1'
         END AS segment
 FROM `bi-2019-test.ad_hoc.orders_jan2021`
-GROUP BY  BASKET
-HAVING COUNT(order_id) BETWEEN 0 AND 5
+GROUP BY  city
+HAVING COUNT(order_id) BETWEEN 0 AND 30
 UNION ALL
-SELECT count(DISTINCT user_id) AS userCount, COUNT(order_id) AS NumberOfOrders
+SELECT  count(DISTINCT user_id) AS userCount, COUNT(order_id) AS NumberOfOrders
     ,CASE 
-        WHEN COUNT(order_id) BETWEEN 5 AND 10 THEN '2'
+        WHEN COUNT(order_id) BETWEEN 31 AND 60 THEN '2'
         END AS segment
 FROM `bi-2019-test.ad_hoc.orders_jan2021`
-GROUP BY  BASKET
-HAVING COUNT(order_id) BETWEEN 5 AND 10
+GROUP BY  city
+HAVING COUNT(order_id) BETWEEN 31 AND 60
 UNION ALL
-SELECT count(DISTINCT user_id) AS userCount, COUNT(order_id) AS NumberOfOrders
+SELECT  count(DISTINCT user_id) AS userCount, COUNT(order_id) AS NumberOfOrders
     ,CASE 
-      WHEN COUNT(order_id) > 10 THEN '3' 
+      WHEN COUNT(order_id) > 61 THEN '3' 
       END AS segment
 FROM `bi-2019-test.ad_hoc.orders_jan2021`
-GROUP BY  BASKET
-HAVING COUNT(order_id) >10
+GROUP BY  city
+HAVING COUNT(order_id) >61
 ORDER BY NumberOfOrders DESC
+
 
 
