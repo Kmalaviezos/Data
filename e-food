@@ -11,3 +11,12 @@ ORDER BY breakfast_count desc limit 10
 
 
 --Q2
+SELECT city, Count(distinct user_id) as unique_users 
+
+FROM `bi-2019-test.ad_hoc.orders_jan2021`
+
+WHERE cuisine_parent='Breakfast'
+
+GROUP BY city
+
+ORDER BY unique_users desc limit 10
