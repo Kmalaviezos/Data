@@ -11,7 +11,7 @@ ORDER BY breakfast_count desc limit 10
 
 
 --Q2
-SELECT city, Count(distinct user_id) as unique_users 
+SELECT city, Count(distinct user_id) as unique_users , count(order_id) as orderscount
 
 FROM `bi-2019-test.ad_hoc.orders_jan2021`
 
@@ -19,4 +19,19 @@ WHERE cuisine_parent='Breakfast'
 
 GROUP BY city
 
-ORDER BY unique_users desc limit 10
+ORDER BY orderscount desc limit 10
+
+
+--Q3
+SELECT city, (sum(basket)/count(order_id)) as avgbasket , count(order_id) as orderscount
+
+FROM `bi-2019-test.ad_hoc.orders_jan2021`
+
+WHERE user_id IN (Select user_id from `bi-2019-test.ad_hoc.orders_jan2021` where
+cuisine_parent = 'Breakfast') 
+
+GROUP BY  city
+ORDER BY orderscount desc limit  10 
+
+
+
